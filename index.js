@@ -25,7 +25,8 @@ var Umzug = module.exports = redefine.Class({
       params:  [],
       path:    path.resolve(process.cwd(), 'migrations'),
       pattern: /^\d+[\w-]+\.js$/,
-      wrap:    function (fun) { return fun; }
+      wrap:    function (fun) { return fun; },
+      extract: function (mod) { return mod.default ? mod.default : mod }
     }, this.options.migrations);
 
     this.storage = this._initStorage();
